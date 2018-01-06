@@ -1,0 +1,20 @@
+<html>
+<head lang="en">
+    <title>Karate Boot</title>
+<th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+
+<div class="container">
+    <th:block th:include="fragments/header :: header"></th:block>
+    <h3>Access Denied Exception</h3>
+   <div>
+	    Logged in user: <b th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]] </b>
+	    <form th:action="@{/app-logout}" method="POST">
+	         <input type="submit" value="Logout"/>
+	    </form>
+   </div> 	 
+   <p class="error" th:text="${errorMsg}">Error</p>
+</div>
+</body>
+</html>
