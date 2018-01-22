@@ -1,6 +1,7 @@
 package com.carbonara.karateboot.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -11,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled=true)
+@EnableGlobalMethodSecurity(securedEnabled=true,prePostEnabled=true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private MyAppUserDetailsService myAppUserDetailsService;	
@@ -36,4 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	      BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
               auth.userDetailsService(myAppUserDetailsService).passwordEncoder(passwordEncoder);
 	}
+        
+        @Bean
+        public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+        }
 } 
