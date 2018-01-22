@@ -1,0 +1,25 @@
+fieldset {
+	padding-top:10px;
+	border:1px solid #666;
+	border-radius:8px;
+	box-shadow:0 0 10px #666;
+    background-color: #d5d5d5;
+    padding-left:5px;
+    padding-right:5px;
+    padding-bottom:5px;
+}
+
+ .gray{
+    color: grey
+}
+
+.receipt{
+	padding-top:10px;
+	border:1px solid #666;
+	border-radius:8px;
+	box-shadow:0 0 10px #666;
+    background-color: #c4e3f3;
+    padding-left:5px;
+    padding-right:5px;
+    padding-bottom:5px;
+}
