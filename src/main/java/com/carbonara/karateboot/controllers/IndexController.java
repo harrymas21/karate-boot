@@ -13,5 +13,9 @@ public class IndexController {
     String index() {
         return "index";
     }
+//    @RequestMapping("/error")
+//    String errorMethod() {
+//        return "errors/error";
+//    }
 
 }
