@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Karate Boot</title>
+   <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+
+<div class="container">
+    <th:block th:include="fragments/homelayout :: header"></th:block>
+            <!--blog post here-->
+            <!--article th:each="p : ${post}"-->
+        <article>
+            <h2 class="title" th:text="${post.title}">Post Title</h2>
+          <div class="date">
+            <i>Posted on</i>
+            <span th:text="${#dates.format(post.date, 'dd-MMM-yyyy HH:mm')}">22-May-2016</span>
+            <span th:if="${post.author}" th:remove="tag">
+              <i>by</i>
+              <span th:text="${post.author.firstname}">first name</span>
+            </span>
+          </div>
+          <p class="content" th:utext="${post.body}">Post content</p>
+        </article>
+            <!--/article-->
+        <!--end of article-->
+        <!--comments here now!!!-->
+        <h3>Comments:</h3>
+        <div class="col-lg-6" th:if="${not #lists.isEmpty(comments)}">
+        <div class="media" th:each="comment : ${comments}">
+           <p class="pull-right" >
+               <small th:text="*{comment.author.firstname}"></small> 
+               <small th:text="*{#dates.format(comment.date, 'dd-MMM-yyyy HH:mm')}"></small>
+           </p>
+            <a class="media-left" href="#">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading user_name" th:text="*{comment.body}"></h4>                              
+              <p><small><a href="">Like</a> - <a href="">Share</a></small></p>
+            </div>
+          </div>
+        </div>
+
+        <form class="form-horizontal" th:object="${comment}" 
+              th:action="@{/app/secure/blog/comment/}" method="post" role="form">
+            <input type="hidden" th:value="${post.id}" th:attr="name='blogId'"/>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <textarea type="text" class="form-control" th:field="*{body}" rows="5" cols="10"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-lg-3'>
+                    <button type="submit" class="btn btn-info">Comment</button>
+                </div>
+            </div>
+        </form>
+</div>
+</body>
+</html>

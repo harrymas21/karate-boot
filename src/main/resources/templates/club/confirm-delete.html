@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Karate Boot</title>
+   <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+
+<div class="container">
+    <th:block th:include="fragments/homelayout :: header"></th:block>
+    <h2>Are you sure you want to delete: </h2>
+        <div>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Name:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${club.name}">name</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Location:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${club.location}">location</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Style: </label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${club.style}">style</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">County: </label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${club.county}">county</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Nearest Town: </label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${club.nearestTown}">nearestTown</p>
+                    </div>
+                </div>
+            </form>
+    </div>
+    <div class="col-lg-3">
+                <a th:href="${'/app/secure/club/delete/' + club.id}" class="btn btn-danger">Delete</a>
+            </div>
+</div>
+</body>
+</html>

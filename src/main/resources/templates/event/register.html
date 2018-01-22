@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Karate Boot</title>
+   <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+
+<div class="container">
+    <th:block th:include="fragments/homelayout :: header"></th:block>
+    <h4><span th:text="${error}" style="color: red"></span></h4>
+    <h2>Event Registration</h2>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Name:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${event.name}">name</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Date:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${#dates.format(event.date, 'dd-MMM-yyyy')}">date</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Location: </label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${event.location}">location</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Type: </label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${event.type}">type</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Cost: </label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${event.cost}">cost</p>
+                    </div>
+                </div>
+            </form>
+    <div class='row'>
+         <div class='col-lg-4'>
+     <form class="form-horizontal" th:object="${register}" 
+              th:action="@{/app/secure/blog/event/register/}" method="post" role="form">
+        <input type="hidden" th:value="${event.id}" th:attr="name='eventId'"/>
+        <div class="form-group">
+            <div class="col-sm-10">
+                <select class="form-control" th:field="*{category}">
+                    <option value="KATA AND KUMITE" selected="selected">KATA AND KUMITE</option>
+                    <option value="KUMITE">KUMITE</option>
+                    <option value="KATA">KATA</option>
+                    <option value="TRAINING">TRAINING</option>
+                </select>
+            </div>
+            </div>
+         <div class="row">
+             <div class='col-lg-3'>
+                <button type="submit" class="btn btn-success">Register</button>
+             </div>
+         </div>
+    </form>
+             </div>
+    </div>
+</div>
+</body>
+</html>

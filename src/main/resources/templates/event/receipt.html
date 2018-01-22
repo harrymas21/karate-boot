@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Karate Boot</title>
+   <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+
+<div class="container">
+    <div class='row'>
+    <th:block th:include="fragments/homelayout :: header"></th:block>
+    <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+    <fieldset class="receipt">
+    <h3>Receipt</h3>
+    <br/>
+    <h4 class='text-uppercase'>
+        <span th:text="${receipt.user.firstname}">firstname</span> 
+        <span th:text="${receipt.user.lastname}">lastname</span>
+    </h4>
+        <div>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Name:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${receipt.event.name}">name</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Date:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${#dates.format(receipt.event.date, 'dd-MMM-yyyy')}">date</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Location: </label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${receipt.event.location}">location</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Type: </label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${receipt.event.type}">type</p>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Participation Category: </label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${receipt.category}">cost</p>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <!--label class="col-sm-2 control-label"> </label-->
+                    <div class="col-sm-10">
+                        <h2>Kshs.<p class="form-control-static" th:text="${receipt.event.cost}">cost</p></h2>
+                    </div>
+                </div>
+            </form>
+    </div>
+    </fieldset>
+    </div>
+    <div class="col-lg-3"></div>
+    </div>
+</div>
+</body>
+</html>

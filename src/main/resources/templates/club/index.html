@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Karate Boot</title>
+   <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+<div class="container">
+    <th:block th:include="fragments/homelayout :: header"></th:block>
+    <div class="col-lg-10" th:if="${not #lists.isEmpty(clubs)}">
+        <table class="table table-striped">
+		<tr>
+		    <th>Name</th>
+		    <th>Location</th>
+		    <!--th>Style</th>
+                    <th>County</th>
+                    <th>Nearest Town</th-->
+                    <th>Actions</th>
+		</tr>  
+    	<tr th:each = "club : ${clubs}">
+            <td th:text="${club.name}"></td>
+            <td th:text="${club.location}"></td>
+            <!--td th:text="${club.style}"></td-->
+            <!--td th:text="${club.county}"></td-->
+            <!--td th:text="${club.nearestTown}"></td-->
+            <td><a th:href="${'/app/secure/club/' + club.id}">More Info</a></td>
+            <td>
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="${'/app/secure/club/edit/' + club.id}">Edit Club</a>
+                </div>
+                </td>
+            <td>
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="${'/app/secure/club/confirmdelete/' + club.id}">Delete</a>
+                </div>
+            </td>
+    	</tr>
+    </table>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <a href="/app/secure/club/new" class="btn btn-success">Add Club</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

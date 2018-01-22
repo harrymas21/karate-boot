@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Karate Boot</title>
+   <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+
+<div class="container">
+    <th:block th:include="fragments/homelayout :: header"></th:block>
+    <h2>Club Details</h2>
+    <div class="col-lg-6">
+        <form class="form-horizontal" th:object="${club}" th:action="@{/app/secure/club/}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{version}"/>
+            <div class="form-group">
+                <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red" class="validation-message"></label>
+                <label class="col-sm-2 control-label">Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{name}" placeholder="e.g. Taikan"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label th:if="${#fields.hasErrors('location')}" th:errors="*{location}" style="color: red" class="validation-message"></label>
+                <label class="col-sm-2 control-label">Location:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{location}" placeholder="e.g. Nairobi"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label th:if="${#fields.hasErrors('style')}" th:errors="*{style}" style="color: red" class="validation-message"></label>
+                <label class="col-sm-2 control-label">Style:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{style}" placeholder="e.g Shotokan"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label th:if="${#fields.hasErrors('county')}" th:errors="*{county}" style="color: red" class="validation-message"></label>
+                <label class="col-sm-2 control-label">County:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{county}" placeholder="e.g. Nairobi"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label th:if="${#fields.hasErrors('nearestTown')}" th:errors="*{nearestTown}" style="color: red" class="validation-message"></label>
+                <label class="col-sm-2 control-label">Nearest Town:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{nearestTown}" placeholder="e.g. Juja"/>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
