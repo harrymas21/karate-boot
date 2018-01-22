@@ -7,7 +7,23 @@
 <body>
 
 <div class="container">
-    <th:block th:include="fragments/header :: header"></th:block>
+    <th:block th:include="fragments/homelayout :: header"></th:block>
+    <fieldset>
+            <div class="row text-center">
+                <div class="">
+                    <h2>Karate Boot Application</h2>
+                    <h3>Welcome</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <img src="../../static/images/boot.png" width="200" th:src="@{/images/boot.png}"/>
+            </div>
+        </fieldset>
+     <div class='row'>
+        <div class='col-lg-4'><h3 class='gray'>Pictures</h3></div>
+        <div class='col-lg-4'><h3 class='gray'>Videos</h3></div>
+        <div class='col-lg-4'><h3 class='gray'>Miscellaneous</h3></div>
+        </div>
 </div>
 </body>
 </html>
