@@ -4,7 +4,9 @@ import com.carbonara.karateboot.models.UserInfo;
 import java.util.List;
 
 public interface UserService {
-      void register(UserInfo user);
+     public UserInfo findUserByEmail(String email);
+     public UserInfo findByUsername(String username);
+      void saveUser(UserInfo user);
       void deleteUser(String username);
       UserInfo getActiveUser(String userName);
       public List<UserInfo> getAllUsers();
