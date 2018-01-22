@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Karate Boot</title>
+   <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+<div class="container">
+    <th:block th:include="fragments/homelayout :: header"></th:block>
+    <div class="col-lg-10" th:if="${not #lists.isEmpty(events)}">
+        <table class="table table-striped">
+		<tr>
+		    <th>Name</th>
+		    <th>Date</th>
+		    <!--th>Location</th>
+		    <th>Type</th>
+                    <th>Cost</th-->
+                    <th>Actions</th>
+		</tr>  
+    	<tr th:each = "event : ${events}">
+            <td th:text="${event.name}"></td>
+            <td th:text="${#dates.format(event.date, 'dd-MMM-yyyy')}"></td>
+            <!--td th:text="${event.location}"></td-->
+            <!--td th:text="${event.type}"></td-->
+            <!--td th:text="${event.cost}"></td-->
+            <td><a th:href="${'/app/secure/event/' + event.id}">More Info</a></td>
+            <td>
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <a th:href="${'/app/secure/event/edit/' + event.id}">Edit Event</a>
+                </div>
+            </td>
+            <td>
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <a th:href="${'/app/secure/event/confirmdelete/' + event.id}">Delete</a>
+                </div>
+            </td>
+    	</tr>
+    </table>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="${'/app/secure/event/new'}" class="btn btn-success">Add Event</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
