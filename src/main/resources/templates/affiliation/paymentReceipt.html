@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Karate Boot</title>
+   <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+
+<div class="container">
+    <div class='row'>
+    <th:block th:include="fragments/homelayout :: header"></th:block>
+    <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+    <fieldset class="receipt">
+    <h3>Receipt</h3>
+    <br/>
+        <div>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Club Name:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${affiliation.club.name}"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Date:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${#dates.format(affiliation.date, 'dd-MMM-yyyy')}"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Amount: </label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${affiliation.amount}"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Paid: </label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${affiliation.paid}"></p>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Total Balance: </label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${affiliation.balance}"></p>
+                    </div>
+                </div>
+                <hr/>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <h4><i>Received By.<span th:text="${affiliation.user.firstname}"/> <span th:text="${affiliation.user.lastname}"/></i></h4>
+                    </div>
+                </div>
+            </form>
+    </div>
+    </fieldset>
+    </div>
+    <div class="col-lg-3"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -69,8 +69,9 @@ public class BlogController {
         if (bindingResult.hasErrors()) {
 			return "blog/form";
 		} else {
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-                        blog.setAuthor(userService.findByUsername(auth.getName()));
+            //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+                        //blog.setAuthor(userService.findByUsername(auth.getName()));
+            blog.setAuthor(userService.getLoggedInUser());
 			blogService.savePost(blog);
 			return "redirect:/app/secure/blog";	
 		}
@@ -94,9 +95,10 @@ public class BlogController {
     public String saveComment(@Valid @ModelAttribute("comment")CommentDTO c,BindingResult bindingResult)
     {
         Comment comment = new Comment();
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             comment.setBlogId(blogService.getPostById(c.getBlogId()));
-            comment.setAuthor(userService.findByUsername(auth.getName()));
+            //comment.setAuthor(userService.findByUsername(auth.getName()));
+            comment.setAuthor(userService.getLoggedInUser());
             comment.setBody(c.getBody());
             commentService.saveComment(comment);
             return "redirect:/app/secure/blog/"+c.getBlogId(); 

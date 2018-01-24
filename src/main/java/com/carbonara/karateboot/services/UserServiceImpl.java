@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,6 +62,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserInfo findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+    
+    @Override
+    public UserInfo getLoggedInUser(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserInfo loggedInUser = findByUsername(auth.getName());
+        return loggedInUser;
     }
     
 }

@@ -6,6 +6,7 @@ import java.util.List;
 public interface UserService {
      public UserInfo findUserByEmail(String email);
      public UserInfo findByUsername(String username);
+     public UserInfo getLoggedInUser();
       void saveUser(UserInfo user);
       void deleteUser(String username);
       UserInfo getActiveUser(String userName);

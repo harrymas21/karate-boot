@@ -1,5 +1,6 @@
 package com.carbonara.karateboot.models;
 
+import com.carbonara.karateboot.libs.UniqueKeyGenerator;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -11,11 +12,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="clubstatements")
-public class ClubStatement implements Serializable{
+@Table(name="affiliations")
+public class Affiliation implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    
+     @Version
+    private Integer version;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "updated_by", nullable = false)
@@ -30,9 +34,13 @@ public class ClubStatement implements Serializable{
     @DateTimeFormat(pattern="yyyy-MM-dd")
   private Date date = new Date();
      
-     @Column(name="body")
+     @Column(name="journalDescription")
   @NotEmpty
   private String journalDescription;
+     
+     @Column(name="transactioncode")
+  @NotEmpty
+  private String transactionCode = UniqueKeyGenerator.getUniqueKey();
      
      @Column(name="amount")
   @NotNull
@@ -50,6 +58,10 @@ public class ClubStatement implements Serializable{
 
     public void setId(int id) {this.id = id;}
     
+    public Integer getVersion() {return version;}
+
+    public void setVersion(Integer version) {this.version = version;}
+    
     public Club getClub() {return club;}
 
     public void setClub(Club club) {this.club = club;}
@@ -61,6 +73,10 @@ public class ClubStatement implements Serializable{
     public Date getDate() {return date;}
 
     public void setDate(Date date) {this.date = date;}
+    
+    public String getTransactionCode() {return transactionCode;}
+
+    public void setTransactionCode(String transactionCode) {this.transactionCode = transactionCode;}
     
     public String getJournalDescription() {return journalDescription;}
 

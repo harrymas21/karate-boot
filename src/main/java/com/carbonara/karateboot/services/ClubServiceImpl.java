@@ -45,11 +45,4 @@ private ClubRepository clubRepository;
     public void deleteClub(Integer id) {
         clubRepository.delete(id);
     }
-    
-    @Override
-    public int getClubBalance(Integer id) {
-        int balance = entityManager.createQuery("SELECT b.balance FROM ClubStatement b WHERE club_id=? ORDER BY date DESC LIMIT 1")
-				.setParameter(1, id).getFirstResult();
-        return balance;
-    }
 }

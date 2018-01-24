@@ -5,7 +5,7 @@ public class CommentDTO{
     private String body;
     
     // standard getters and setters
-    public int getBlogId() {return blogId;}
+  public int getBlogId() {return blogId;}
 
   public void setBlogId(int blogId) {this.blogId = blogId;}
   

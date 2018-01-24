@@ -50,7 +50,7 @@ public class Club implements Serializable{
   private String nearestTown;
      
      @OneToMany(fetch = FetchType.LAZY, mappedBy = "club")
-    private Set<ClubStatement> statements = new HashSet<ClubStatement>();
+    private Set<Affiliation> statements = new HashSet<Affiliation>();
     
      //getters and setters
   public int getId() { return id; }

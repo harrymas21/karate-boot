@@ -1,22 +1,9 @@
 package com.carbonara.karateboot.models;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
+import java.util.*;
+import javax.persistence.*;
+import org.hibernate.validator.constraints.*;
 
 @Entity
 @Table(name="users")
@@ -77,7 +64,7 @@ public class UserInfo implements Serializable {
     private Set<EventRegister> registrations = new HashSet<EventRegister>();
   
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private Set<ClubStatement> statements = new HashSet<ClubStatement>();
+    private Set<Affiliation> statements = new HashSet<Affiliation>();
   
   public int getId() {return id;}
 

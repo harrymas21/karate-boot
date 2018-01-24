@@ -88,14 +88,15 @@ public class EventController {
     @RequestMapping("app/secure/blog/event/register/")
     public String saveEventRegistration(@Valid @ModelAttribute("register")EventRegisterDTO dto,BindingResult bindingResult,Model model)
     { 
-       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+       //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
        EventRegister e = new EventRegister();
-       e.setUser(userService.findByUsername(auth.getName()));
+       //e.setUser(userService.findByUsername(auth.getName()));
+       e.setUser(userService.getLoggedInUser());
        e.setEvent(eventService.getEventById(dto.getEventId()));
        e.setResult("PARTICIPATION");
        e.setPoints(0);
        e.setCategory(dto.getCategory());
-       EventRegister exists = eventService.findByEventAndUser(eventService.getEventById(dto.getEventId()),userService.findByUsername(auth.getName()));
+       EventRegister exists = eventService.findByEventAndUser(eventService.getEventById(dto.getEventId()),userService.getLoggedInUser());
        if(exists==null)
        {
            eventService.saveRegistration(e);
@@ -109,9 +110,9 @@ public class EventController {
     
     @RequestMapping("app/secure/event/receipt/{id}")
     public String receiptForEvent(@PathVariable Integer id, Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        //int userId = (userService.findByUsername(auth.getName())).getId();
-        UserInfo user = (userService.findByUsername(auth.getName()));
+        //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //UserInfo user = (userService.findByUsername(auth.getName()));
+        UserInfo user = (userService.getLoggedInUser());
         Event event = eventService.getEventById(id);
         model.addAttribute("receipt", eventService.findByEventAndUser(event,user));
         return "event/receipt";
