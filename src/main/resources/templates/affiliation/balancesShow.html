@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Karate Boot</title>
+   <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+<div class="container">
+    <th:block th:include="fragments/homelayout :: header"></th:block>
+    <div class="col-lg-10" th:if="${not #lists.isEmpty(statements)}">
+        <table class="table table-striped">
+		<tr>
+                    <th>Club Name</th>
+                    <th>Outstanding Balance</th>
+		</tr>  
+    	<tr th:each = "statement : ${statements}">
+            <td th:text="${statement.club.name}"></td>
+            <td th:text="${statement.balance}"></td>
+    	</tr>
+    </table>
+        <h4>Balances as at: <span th:text="${#dates.format(date, 'dd-MMM-yyyy HH:mm')}" style="color: grey"></span></h4>
+    </div>
+</div>
+</body>
+</html>

@@ -45,6 +45,12 @@
             <a th:href="${'/app/secure/affiliation/club'}" class="btn btn-warning">View Payment Statements By Club</a>
         </div>
         </div>
+        
+         <div class="col-lg-4">
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="${'/app/secure/affiliation/balance'}" class="btn btn-warning">View Club Balances</a>
+        </div>
+        </div>
     </div>
 </div>
 </body>
