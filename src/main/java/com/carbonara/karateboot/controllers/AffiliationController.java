@@ -12,6 +12,7 @@ import com.carbonara.karateboot.services.AffiliationService;
 import com.carbonara.karateboot.services.ClubService;
 import com.carbonara.karateboot.services.UserService;
 import java.io.IOException;
+import java.util.Date;
 import javax.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
@@ -82,7 +83,7 @@ public class AffiliationController {
     
     //save to database and redirect to show
     @RequestMapping(value = "app/secure/affiliation/new/save", method = RequestMethod.POST)
-    public String savePost(@Valid @ModelAttribute("post")AffiliationDTO dto,BindingResult bindingResult,Model model)
+    public String savePost(@Valid @ModelAttribute("affiliation")AffiliationDTO dto,BindingResult bindingResult,Model model)
     {
         if (bindingResult.hasErrors()) {
             model.addAttribute("clubs", clubService.listAllClubs());
@@ -103,8 +104,16 @@ public class AffiliationController {
     
     //display receipt after receiving payment.
     @RequestMapping("app/secure/affiliation/statement/{code}")
-    public String receiptForEvent(@PathVariable String code, Model model) {
+    public String receiptForPayment(@PathVariable String code, Model model) {
         model.addAttribute("affiliation",affiliationService.getStatementByCode(code));
         return "affiliation/paymentReceipt";
+    }
+    
+    //List club balances.
+    @RequestMapping("app/secure/affiliation/balance")
+    public String listBalances(Model model) {
+        model.addAttribute("statements",affiliationService.listAllClubsBalance());
+        model.addAttribute("date",new Date());
+        return "affiliation/balancesShow";
     }
 }
