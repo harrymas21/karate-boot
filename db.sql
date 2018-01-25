@@ -10,10 +10,52 @@ Target Server Type    : MYSQL
 Target Server Version : 50524
 File Encoding         : 65001
 
-Date: 2018-01-23 00:27:58
+Date: 2018-01-25 19:20:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `affiliations`
+-- ----------------------------
+DROP TABLE IF EXISTS `affiliations`;
+CREATE TABLE `affiliations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `version` varchar(512) NOT NULL,
+  `journalDescription` varchar(255) NOT NULL,
+  `transactioncode` varchar(255) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `balance` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `paid` int(11) NOT NULL,
+  `club_id` int(11) NOT NULL,
+  `updated_by` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKsya9810edyxbds5kujql7j3x4` (`club_id`),
+  KEY `FKfju7yop53rscp2na4ij81o9mc` (`updated_by`),
+  CONSTRAINT `FKfju7yop53rscp2na4ij81o9mc` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`),
+  CONSTRAINT `FKhao5t4ehrllmpfv0xe9p0sl3e` FOREIGN KEY (`club_id`) REFERENCES `clubs` (`id`),
+  CONSTRAINT `FKiwo6a6ykunlg7p1ey6t1no8mx` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`),
+  CONSTRAINT `FKsya9810edyxbds5kujql7j3x4` FOREIGN KEY (`club_id`) REFERENCES `clubs` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of affiliations
+-- ----------------------------
+INSERT INTO `affiliations` VALUES ('1', '0', 'OPENING BALANCE', 'DFG2018012415412', '8000', '8000', '2018-01-23 23:06:02', '0', '1', '2');
+INSERT INTO `affiliations` VALUES ('2', '0', 'OPENING BALANCE', 'DDG2018012415154', '10000', '10000', '2018-01-23 23:06:58', '0', '2', '2');
+INSERT INTO `affiliations` VALUES ('3', '0', 'OPENING BALANCE', 'GHY2018985515412', '10000', '10000', '2018-01-23 23:07:41', '0', '3', '2');
+INSERT INTO `affiliations` VALUES ('4', '0', 'OPENING BALANCE', 'QWE2018012415412', '8000', '8000', '2018-01-23 23:08:03', '0', '4', '2');
+INSERT INTO `affiliations` VALUES ('5', '0', '2016 AFFILIATION PAYMENT', 'YUI20180124154125', '2000', '6000', '2018-01-24 00:33:03', '2000', '1', '2');
+INSERT INTO `affiliations` VALUES ('6', '0', '2017 AFFILIATION PAYMENT', 'WRE2018012415412', '2000', '4000', '2018-01-24 00:35:10', '2000', '1', '2');
+INSERT INTO `affiliations` VALUES ('7', '0', '2016 affiliation fee', 'SJP20180124181217', '2000', '4500', '2018-01-24 18:13:00', '1500', '1', '3');
+INSERT INTO `affiliations` VALUES ('8', '0', '2015/2016 affiliation fee', 'LRZ20180124182405', '4000', '4000', '2018-01-24 18:26:03', '4000', '4', '3');
+INSERT INTO `affiliations` VALUES ('9', '0', '2014', 'AQQ20180124182405', '2000', '8000', '2018-01-24 18:38:26', '2000', '3', '3');
+INSERT INTO `affiliations` VALUES ('10', '0', '2018', 'OZE20180124185817', '2000', '7000', '2018-01-24 18:59:07', '1500', '3', '3');
+INSERT INTO `affiliations` VALUES ('11', '0', '2013/2015 affiliation fee', 'HDK20180124190156', '4000', '3000', '2018-01-24 19:04:28', '4000', '3', '3');
+INSERT INTO `affiliations` VALUES ('12', '0', '2017', 'GHY222222222222', '8000', '0', '2018-01-24 20:12:50', '8000', '3', '2');
+INSERT INTO `affiliations` VALUES ('13', '0', '2018', 'BAR20180124201612', '2000', '200', '2018-01-24 20:18:23', '1800', '3', '3');
+INSERT INTO `affiliations` VALUES ('14', '0', 'clear outstanding debt', 'UQV20180125130516', '0', '2000', '2018-01-25 13:07:09', '8000', '2', '3');
 
 -- ----------------------------
 -- Table structure for `blog`
@@ -29,7 +71,7 @@ CREATE TABLE `blog` (
   PRIMARY KEY (`id`),
   KEY `FK4v4ymc0irlkpq9aowljw4mdrs` (`author_id`),
   CONSTRAINT `FK4v4ymc0irlkpq9aowljw4mdrs` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of blog
@@ -44,6 +86,7 @@ INSERT INTO `blog` VALUES ('7', 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
 INSERT INTO `blog` VALUES ('8', 'Let’s begin with the picture on the front cover. You may have observed that the\r\nportrait of Alan Turing is constructed from a number of pictures (“tiles”) of great\r\ncomputer scientists and mathematicians.\r\nSuppose you were asked in an interview to design a program that takes an\r\nimage and a collection of s × s-sized tiles and produce a mosaic from the tiles that\r\nresembles the image. A good way to begin may be to partition the image into s × ssized squares, compute the average color of each such image square, and then find\r\nthe tile that is closest to it in the color space.', '2018-01-22 14:32:37', 'giberrish', '3', '0');
 INSERT INTO `blog` VALUES ('9', 'pol', '2018-01-22 21:31:53', 'pol', '7', '0');
 INSERT INTO `blog` VALUES ('10', 'ddddddddddddd', '2018-01-22 22:27:10', 'dddddddddd', '3', '0');
+INSERT INTO `blog` VALUES ('11', 'mmmmmmmmmmm', '2018-01-24 18:15:24', 'mmmmmmmmmmm', '3', '0');
 
 -- ----------------------------
 -- Table structure for `clubs`
@@ -68,30 +111,6 @@ INSERT INTO `clubs` VALUES ('2', 'TUK', 'CBD', 'GOJU RYU', 'NAIROBI', 'NAIROBI',
 INSERT INTO `clubs` VALUES ('3', 'JKUAT', 'JUJA', 'SHOTOKAN', 'NAIROBI', 'JUJA', '0');
 INSERT INTO `clubs` VALUES ('4', 'MMUST', 'KAKAMEGA', 'SHOTOKAN', 'KAKAMEGA', 'KAKAMEGA', '0');
 INSERT INTO `clubs` VALUES ('5', 'no test', 'test', 'test', 'test', 'test', '0');
-
--- ----------------------------
--- Table structure for `clubstatements`
--- ----------------------------
-DROP TABLE IF EXISTS `clubstatements`;
-CREATE TABLE `clubstatements` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `amount` int(11) NOT NULL,
-  `balance` int(11) NOT NULL,
-  `date` datetime NOT NULL,
-  `body` varchar(255) NOT NULL,
-  `paid` int(11) NOT NULL,
-  `club_id` int(11) NOT NULL,
-  `updated_by` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKhao5t4ehrllmpfv0xe9p0sl3e` (`club_id`),
-  KEY `FKiwo6a6ykunlg7p1ey6t1no8mx` (`updated_by`),
-  CONSTRAINT `FKiwo6a6ykunlg7p1ey6t1no8mx` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`),
-  CONSTRAINT `FKhao5t4ehrllmpfv0xe9p0sl3e` FOREIGN KEY (`club_id`) REFERENCES `clubs` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of clubstatements
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `comments`
@@ -192,15 +211,13 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   KEY `FKhe3mwp13wbxa0khempwhn7i3t` (`clubid`),
   CONSTRAINT `FKhe3mwp13wbxa0khempwhn7i3t` FOREIGN KEY (`clubid`) REFERENCES `clubs` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'CAROL', 'ROLE_USER', 'Sales', 'carol', 'ROBI', 'robi@robi.com', 'KAYOLE', '254705222569', '0', '2');
-INSERT INTO `users` VALUES ('2', 'David', 'ROLE_USER', 'Administrator', 'david', 'Mwavali', 'david@davie.com', 'LAVINGTON', '254700000000', '0', '2');
-INSERT INTO `users` VALUES ('3', 'harry', 'ROLE_ADMIN', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'harry', 'Support', 'harry@gmail.com', 'SOUTH B', '254705222568', '1', '2');
-INSERT INTO `users` VALUES ('4', 'PETER', 'ROLE_USER', 'Supervisor', 'peter', 'WANYAMA', 'wanyama@wanyama.com', 'WESTLANDS', '254721656100', '0', '2');
-INSERT INTO `users` VALUES ('5', 'Super', 'ROLE_USER', 'Super Administrator', 'super', 'Administrator', 'admin@admin.com', 'EASTLEIGH', '254705222568', '0', '2');
-INSERT INTO `users` VALUES ('6', 'System', 'ROLE_USER', 'Executive', 'system', 'Executive', 'system@admin.com', 'KOMAROCK', '254897542116', '0', '2');
-INSERT INTO `users` VALUES ('7', 'gabby', 'ROLE_USER', '$2a$10$/0GrhURSoL/qwgiYmqAiyO2TTighRiaxkSDENkQvnfWyIu5h19ZNy', 'gabby', 'gabby', 'gabby@gabby.com', 'sabatia', '254700000000', '1', '2');
+INSERT INTO `users` VALUES ('2', 'johndoe', 'ROLE_USER', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'John', 'Doe', 'jdoe@jdoe.com', 'LAVINGTON', '254700000000', '1', '2');
+INSERT INTO `users` VALUES ('3', 'harry', 'ROLE_ADMIN', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'harry', 'Support', 'support@kboot.com', 'SOUTH B', '254700000000', '1', '2');
+INSERT INTO `users` VALUES ('5', 'test', 'ROLE_USER', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'user', 'test', 'admin@admin.com', 'EASTLEIGH', '254700000000', '1', '2');
+INSERT INTO `users` VALUES ('7', 'user', 'ROLE_USER', '$2a$10$/0GrhURSoL/qwgiYmqAiyO2TTighRiaxkSDENkQvnfWyIu5h19ZNy', 'gabby', 'gabby', 'gabby@gabby.com', 'sabatia', '254700000000', '1', '2');
+INSERT INTO `users` VALUES ('8', 'dao', 'ROLE_USER', '$2a$10$4oUTSV.KkE8Dsy6RUsknZes3sU7AJzAXM4REhBq7gUpaNGRWorfNi', 'dao', 'dao', 'dao@dao.com', 'dao', '254700000000', '1', '5');
