@@ -10,5 +10,6 @@ public interface AffiliationService {
     Iterable<Affiliation> findByClub(Club club);
     Affiliation saveAffiliation(Affiliation Affiliation);
     Affiliation getStatementByCode(String code);
+    Iterable<Affiliation> listAllClubsBalance();
     int getClubBalance(Integer id);
 }
