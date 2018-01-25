@@ -10,7 +10,7 @@ public class UniqueKeyGenerator {
     private static final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
     
-    
+    //sample = LRZ20180124182405
     public static String getUniqueKey(){
         Random random = new Random();
         String newDateObject = formatter.format(date);
