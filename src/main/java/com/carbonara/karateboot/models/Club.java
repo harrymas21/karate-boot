@@ -51,6 +51,9 @@ public class Club implements Serializable{
      
      @OneToMany(fetch = FetchType.LAZY, mappedBy = "club")
     private Set<Affiliation> statements = new HashSet<Affiliation>();
+     
+     @OneToMany(fetch = FetchType.LAZY, mappedBy = "club")
+    private Set<UserInfo> members = new HashSet<UserInfo>();
     
      //getters and setters
   public int getId() { return id; }
