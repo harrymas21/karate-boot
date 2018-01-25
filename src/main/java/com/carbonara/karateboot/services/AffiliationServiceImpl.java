@@ -31,9 +31,14 @@ public class AffiliationServiceImpl implements AffiliationService {
     @Override
     public Affiliation saveAffiliation(Affiliation affiliation) {
         int oldBalance = getClubBalance(affiliation.getClub().getId());
-        int newBalance = (affiliation.getAmount()-affiliation.getPaid());
-        affiliation.setBalance(oldBalance + newBalance);
-        return affiliationRepository.save(affiliation);
+        //int newBalance = (affiliation.getBalance());
+        //if(oldBalance>0){
+            affiliation.setBalance((oldBalance + affiliation.getAmount()) - affiliation.getPaid());
+           // return affiliationRepository.save(affiliation);
+       // }else{
+           // affiliation.setBalance(affiliation.getBalance());
+            return affiliationRepository.save(affiliation);
+      //  }  
     }
 
     @Override
@@ -56,5 +61,12 @@ public class AffiliationServiceImpl implements AffiliationService {
     @Override
     public Affiliation getStatementByCode(String code) {
         return affiliationRepository.findByTransactionCode(code);
+    }
+
+    @Override
+    public Iterable<Affiliation> listAllClubsBalance() {
+        List<Affiliation> clubList = entityManager.createQuery("SELECT a FROM Affiliation"
+                + " a WHERE a.date=(SELECT MAX(b.date) FROM Affiliation b where b.club = a.club)").getResultList();
+        return clubList;
     }
 }
