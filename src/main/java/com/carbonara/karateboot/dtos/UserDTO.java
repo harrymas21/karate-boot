@@ -32,6 +32,9 @@ public class UserDTO {
   @NotEmpty(message = "*Please provide your address")
   private String address;
   
+  @NotEmpty(message = "*Please provide your belt rank")
+  private String rank;
+  
 
   @NotEmpty(message = "*Please provide your phone-number")
   private String phone;
@@ -62,6 +65,10 @@ public class UserDTO {
   public String getLastname() {return lastname;}
 
   public void setLastname(String lastname) {this.lastname = lastname;}
+  
+  public String getRank() {return rank;}
+
+  public void setRank(String rank) {this.rank = rank;}
 
   public String getEmail() {return email;}
 

@@ -34,6 +34,10 @@ public class UserInfo implements Serializable {
   @NotEmpty(message = "*Please provide your lastname")
   private String lastname;
   
+  @Column(name="rank")
+  @NotEmpty(message = "*Please provide your belt rank")
+  private String rank;
+  
   @Column(name = "email")
   @Email(message = "*Please provide a valid Email")
   @NotEmpty(message = "*Please provide an email")
@@ -85,6 +89,10 @@ public class UserInfo implements Serializable {
   public String getFirstname() {return firstname;}
 
   public void setFirstname(String firstname) {this.firstname = firstname;}
+  
+  public String getRank() {return rank;}
+
+  public void setRank(String rank) {this.rank = rank;}
 
   public String getLastname() {return lastname;}
 

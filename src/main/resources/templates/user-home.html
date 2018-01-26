@@ -19,6 +19,10 @@
                 <img src="../../static/images/boot.png" width="200" th:src="@{/images/boot.png}"/>
             </div>
         </fieldset>
+    <h4>
+        Welcome:
+        <span style="color: gray;font-style: italic" th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]]
+        </span></h4>
      <div class='row'>
         <div class='col-lg-4'><h3 class='gray'>Pictures</h3></div>
         <div class='col-lg-4'><h3 class='gray'>Videos</h3></div>

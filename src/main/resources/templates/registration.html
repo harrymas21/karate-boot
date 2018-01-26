@@ -40,12 +40,35 @@
                                     placeholder="User Name" class="form-control" /> 
                     </div>
             </div>
-        <div class="form-group">
+            <div class="form-group">
             <div class="col-sm-9">
                 <label th:if="${#fields.hasErrors('club')}" th:errors="*{club}" style="color: red" class="validation-message"></label>
                 <label class="control-label">Club:</label>
                 <select class="form-control" th:field="*{club}">
                 <option th:each = "club : ${clubs}" th:value="${club.name}" th:text="${club.name}"></option>
+            </select>
+            </div>
+            </div>
+        <div class="form-group">
+            <div class="col-sm-9">
+                <label th:if="${#fields.hasErrors('rank')}" th:errors="*{rank}" style="color: red" class="validation-message"></label>
+                <label class="control-label">Belt Rank:</label>
+                <select class="form-control" th:field="*{rank}">
+                    <option value="Above 5th DAN">Above 5th DAN</option>
+                    <option value="5th DAN">5th DAN</option>
+                    <option value="4th DAN">4th DAN</option>
+                    <option value="3rd DAN">3rd DAN</option>
+                    <option value="2nd DAN">2nd DAN</option>
+                    <option value="1st DAN">1st DAN</option>
+                    <option value="1st KYU">1st KYU</option>
+                    <option value="2nd KYU">2nd KYU</option>
+                    <option value="3rd KYU">3rd KYU</option>
+                    <option value="4th KYU" selected="selected">4th KYU</option>
+                    <option value="5th KYU">5th KYU</option>
+                    <option value="6th KYU">6th KYU</option>
+                    <option value="7th kyu">7th kyu</option>
+                    <option value="Below 7th KYU">Below 7th KYU</option>
+                    <option value="Not Applicable">Not Applicable</option>
             </select>
             </div>
             </div>
