@@ -29,8 +29,8 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Iterable<Comment> findByBlogId(int id) {
             //return commentRepository.findByBlogId(id);
-        Iterable<Comment> list = entityManager.createQuery("SELECT comments FROM Comment comments WHERE blog_id=?")
-				.setParameter(1, id).getResultList();
+        Iterable<Comment> list = entityManager.createQuery("SELECT comments FROM Comment comments WHERE blog_id=? ORDER BY comments.date DESC")
+				.setParameter(1, id).setMaxResults(25).getResultList();
         return list;
     }
 }
