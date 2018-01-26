@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50524
 File Encoding         : 65001
 
-Date: 2018-01-25 19:20:35
+Date: 2018-01-26 21:40:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -127,7 +127,7 @@ CREATE TABLE `comments` (
   KEY `FKdbueb2umo93l6hbt66d8ueo2l` (`blog_id`),
   CONSTRAINT `FKdbueb2umo93l6hbt66d8ueo2l` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`),
   CONSTRAINT `FKn2na60ukhs76ibtpt9burkm27` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of comments
@@ -140,6 +140,9 @@ INSERT INTO `comments` VALUES ('5', 'woowwwwwww', '2018-01-22 02:36:32', '3', '1
 INSERT INTO `comments` VALUES ('6', 'shit', '2018-01-22 10:20:47', '3', '6');
 INSERT INTO `comments` VALUES ('7', 'what is this?', '2018-01-22 14:02:27', '3', '4');
 INSERT INTO `comments` VALUES ('8', 'first comment', '2018-01-22 14:32:56', '3', '8');
+INSERT INTO `comments` VALUES ('9', 'wrong\r\n', '2018-01-26 17:02:59', '3', '5');
+INSERT INTO `comments` VALUES ('10', 'desp', '2018-01-26 17:03:09', '3', '5');
+INSERT INTO `comments` VALUES ('11', 'what?', '2018-01-26 17:13:02', '3', '6');
 
 -- ----------------------------
 -- Table structure for `eventregister`
@@ -208,16 +211,18 @@ CREATE TABLE `users` (
   `phone` varchar(255) NOT NULL,
   `enabled` smallint(6) DEFAULT NULL,
   `clubid` int(11) DEFAULT '2',
+  `rank` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKhe3mwp13wbxa0khempwhn7i3t` (`clubid`),
   CONSTRAINT `FKhe3mwp13wbxa0khempwhn7i3t` FOREIGN KEY (`clubid`) REFERENCES `clubs` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('2', 'johndoe', 'ROLE_USER', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'John', 'Doe', 'jdoe@jdoe.com', 'LAVINGTON', '254700000000', '1', '2');
-INSERT INTO `users` VALUES ('3', 'harry', 'ROLE_ADMIN', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'harry', 'Support', 'support@kboot.com', 'SOUTH B', '254700000000', '1', '2');
-INSERT INTO `users` VALUES ('5', 'test', 'ROLE_USER', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'user', 'test', 'admin@admin.com', 'EASTLEIGH', '254700000000', '1', '2');
-INSERT INTO `users` VALUES ('7', 'user', 'ROLE_USER', '$2a$10$/0GrhURSoL/qwgiYmqAiyO2TTighRiaxkSDENkQvnfWyIu5h19ZNy', 'gabby', 'gabby', 'gabby@gabby.com', 'sabatia', '254700000000', '1', '2');
-INSERT INTO `users` VALUES ('8', 'dao', 'ROLE_USER', '$2a$10$4oUTSV.KkE8Dsy6RUsknZes3sU7AJzAXM4REhBq7gUpaNGRWorfNi', 'dao', 'dao', 'dao@dao.com', 'dao', '254700000000', '1', '5');
+INSERT INTO `users` VALUES ('2', 'johndoe', 'ROLE_USER', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'John', 'Doe', 'jdoe@jdoe.com', 'LAVINGTON', '254700000000', '1', '2', '2nd KYU');
+INSERT INTO `users` VALUES ('3', 'harry', 'ROLE_ADMIN', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'harry', 'Support', 'support@kboot.com', 'SOUTH B', '254700000000', '1', '2', '2nd KYU');
+INSERT INTO `users` VALUES ('5', 'test', 'ROLE_USER', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'user', 'test', 'admin@admin.com', 'EASTLEIGH', '254700000000', '1', '2', '2nd KYU');
+INSERT INTO `users` VALUES ('7', 'user', 'ROLE_USER', '$2a$10$/0GrhURSoL/qwgiYmqAiyO2TTighRiaxkSDENkQvnfWyIu5h19ZNy', 'gabby', 'gabby', 'gabby@gabby.com', 'sabatia', '254700000000', '1', '2', '2nd KYU');
+INSERT INTO `users` VALUES ('8', 'dao', 'ROLE_USER', '$2a$10$4oUTSV.KkE8Dsy6RUsknZes3sU7AJzAXM4REhBq7gUpaNGRWorfNi', 'dao', 'dao', 'dao@dao.com', 'dao', '254700000000', '1', '5', '2nd KYU');
+INSERT INTO `users` VALUES ('9', 'janedoe', 'ROLE_USER', '$2a$10$W1NCISINTKAIhD91Q824cuPZBNohW35ur47LIDOZriYueLXzFC07G', 'jane', 'doe', 'jane@jane.com', 'KAKAMEGA', '254700000000', '1', '4', '3rd KYU');
