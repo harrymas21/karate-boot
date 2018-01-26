@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository("eventRepository")
 public interface EventRepository extends CrudRepository<Event, Integer> {
+    Iterable<Event> findAllByOrderByDateDesc();
 }

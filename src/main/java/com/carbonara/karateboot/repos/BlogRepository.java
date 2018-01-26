@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository("blogRepository")
 public interface BlogRepository extends CrudRepository<Blog, Integer> {
-    
+    Iterable<Blog> findTop200ByOrderByDateDesc();
 }

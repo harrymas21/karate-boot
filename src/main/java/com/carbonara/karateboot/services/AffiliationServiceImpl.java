@@ -43,7 +43,7 @@ public class AffiliationServiceImpl implements AffiliationService {
 
     @Override
     public Iterable<Affiliation> listAllStatements(Date startDate, Date endDate) {
-        return affiliationRepository.findByDateBetween(startDate, endDate);
+        return affiliationRepository.findByDateBetweenOrderByDateDesc(startDate, endDate);
     }
     
     @Override
@@ -55,7 +55,7 @@ public class AffiliationServiceImpl implements AffiliationService {
 
     @Override
     public Iterable<Affiliation> listAllStatementsByClub(Date startDate, Date endDate, Club club) {
-        return affiliationRepository.findByDateBetweenAndClub(startDate, endDate,club);
+        return affiliationRepository.findByDateBetweenAndClubOrderByDateDesc(startDate, endDate,club);
     }
 
     @Override

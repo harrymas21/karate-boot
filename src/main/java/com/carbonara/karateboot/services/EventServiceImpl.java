@@ -22,7 +22,7 @@ private EventRegisterRepository eventRegisterRepository;
     
     @Override
     public Iterable<Event> listAllEvents() {
-        return eventRepository.findAll();
+        return eventRepository.findAllByOrderByDateDesc();
     }
 
     @Override

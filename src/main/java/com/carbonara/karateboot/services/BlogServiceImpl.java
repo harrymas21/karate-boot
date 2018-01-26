@@ -16,7 +16,7 @@ public class BlogServiceImpl implements BlogService{
     }
     @Override
     public Iterable<Blog> listAllPosts() {
-        return blogRepository.findAll();
+        return blogRepository.findTop200ByOrderByDateDesc();
     }
 
     @Override
@@ -32,11 +32,6 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public void deletePost(Integer id) {
         blogRepository.delete(id);
-    }
-
-    @Override
-    public Iterable<Blog> listTopTenPosts() {
-        return null;
     }
     
 }
