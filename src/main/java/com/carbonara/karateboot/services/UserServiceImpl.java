@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserInfo> getAllUsers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return userRepository.findAll();
     }
 
     @Override
@@ -67,6 +67,13 @@ public class UserServiceImpl implements UserService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserInfo loggedInUser = findByUsername(auth.getName());
         return loggedInUser;
+    }
+
+    @Override
+    public Iterable<UserInfo> getUsersByClub(Integer id) {
+        List<UserInfo> usersByClub = entityManager.createQuery("SELECT u FROM UserInfo u WHERE clubid=?")
+				.setParameter(1, id).getResultList();
+        return usersByClub;
     }
     
 }

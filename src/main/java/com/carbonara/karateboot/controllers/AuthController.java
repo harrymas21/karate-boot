@@ -65,6 +65,7 @@ public class AuthController {
 							"There is already a user registered with the email provided");
 		}
 		if (bindingResult.hasErrors()) {
+                        modelAndView.addObject("clubs", clubService.listAllClubs());
 			modelAndView.setViewName("registration");
 		} else {
                     UserInfo user = new UserInfo();
@@ -77,6 +78,7 @@ public class AuthController {
                         user.setPassword(dto.getPassword());
                         user.setPhone(dto.getPhone());
                         user.setRole(dto.getRole());
+                        user.setRank(dto.getRank());
                         user.setEnabled(dto.getEnabled());
 			userService.saveUser(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");

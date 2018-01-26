@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.carbonara.karateboot.services.ClubService;
-import java.io.IOException;
+import com.carbonara.karateboot.services.UserService;
 import javax.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class ClubController {
     @Autowired
 	private ClubService clubService;
+    @Autowired
+	private UserService userService;
     
     @RequestMapping(value = "app/secure/clubs", method = RequestMethod.GET)
     public String list(Model model) {
@@ -41,6 +43,14 @@ public class ClubController {
     public String editEvent(@PathVariable Integer id, Model model) {
         model.addAttribute("club", clubService.getClubById(id));
         return "club/form";
+    }
+    
+    //get club members
+    @RequestMapping("app/secure/club/members/{id}")
+    public String getMembers(@PathVariable Integer id, Model model) {
+        model.addAttribute("members", userService.getUsersByClub(id));
+        model.addAttribute("club", clubService.getClubById(id).getName());
+        return "club/clubMembers";
     }
     
     //save to database and redirect to show
