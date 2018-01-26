@@ -19,6 +19,7 @@
 	1. All payments selectable by date. DONE
 	2. Payments selectable by date and club. DONE
 	3. Club balances. DONE
+	4. View club members(Users according to club). DONE
 	5. View event participants.
 	6. View event participants by category.
 	7. View event participants by category & weight.
