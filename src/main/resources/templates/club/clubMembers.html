@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Karate Boot</title>
+   <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+<div class="container">
+    <th:block th:include="fragments/homelayout :: header"></th:block>
+    <div class="col-lg-10" th:if="${not #lists.isEmpty(members)}">
+        <h3>MEMBERS: <span style="color:gray" th:text="${club}"></span></h3>
+        <table class="table table-striped" id="clubMembers">
+            <thead>
+		<tr>
+		    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Rank</th>
+		</tr>
+            </thead>
+            <tbody>
+    	<tr th:each = "member : ${members}">
+            <td th:text="${member.firstname}"></td>
+            <td th:text="${member.lastname}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.phone}"></td>
+            <td th:text="${member.address}"></td>
+            <td th:text="${member.rank}"></td>
+    	</tr>
+        </tbody>
+    </table>
+</div>
+    
+    <th:block th:include="fragments/headerinc :: scripts"></th:block>
+    <script type="text/javascript">
+        $(function () {
+            $("#clubMembers").dataTable();
+        });
+        </script>
+</div>
+</body>
+</html>

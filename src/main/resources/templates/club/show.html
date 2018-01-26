@@ -42,7 +42,10 @@
                     </div>
                 </div>
             </form>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="${'/app/secure/club/members/' + club.id}" class="btn btn-warning">View Club Members</a>
+        </div>
     </div>
-</div>
+</div>  
 </body>
 </html>
