@@ -8,21 +8,20 @@
 <div class="container">
     <th:block th:include="fragments/homelayout :: header"></th:block>
     <div class="col-lg-10" th:if="${not #lists.isEmpty(clubs)}">
-        <table class="table table-striped">
+        <table class="table table-striped" id="clubs">
+            <thead>
 		<tr>
 		    <th>Name</th>
 		    <th>Location</th>
-		    <!--th>Style</th>
-                    <th>County</th>
-                    <th>Nearest Town</th-->
-                    <th>Actions</th>
-		</tr>  
+                    <th></th>
+                    <th></th>
+                    <th></th>
+		</tr>
+            </thead>
+            <tbody>
     	<tr th:each = "club : ${clubs}">
             <td th:text="${club.name}"></td>
             <td th:text="${club.location}"></td>
-            <!--td th:text="${club.style}"></td-->
-            <!--td th:text="${club.county}"></td-->
-            <!--td th:text="${club.nearestTown}"></td-->
             <td><a th:href="${'/app/secure/club/' + club.id}">More Info</a></td>
             <td>
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
@@ -35,11 +34,18 @@
                 </div>
             </td>
     	</tr>
+        </tbody>
     </table>
         <div sec:authorize="hasRole('ROLE_ADMIN')">
             <a href="/app/secure/club/new" class="btn btn-success">Add Club</a>
         </div>
     </div>
 </div>
+    <th:block th:include="fragments/headerinc :: scripts"></th:block>
+    <script type="text/javascript">
+        $(function () {
+            $("#clubs").dataTable();
+        })
+        </script>
 </body>
 </html>

@@ -8,7 +8,8 @@
 <div class="container">
     <th:block th:include="fragments/homelayout :: header"></th:block>
     <div class="col-lg-10" th:if="${not #lists.isEmpty(statements)}">
-        <table class="table table-striped">
+        <table class="table table-striped" id="statements">
+            <thead>
 		<tr>
 		    <th>Club Name</th>
 		    <th>Journal Description</th>
@@ -17,7 +18,9 @@
                     <th>Paid</th>
                     <th>Balance</th>
                     <th>Received By</th>
-		</tr>  
+		</tr>
+            </thead>
+            <tbody>
     	<tr th:each = "statement : ${statements}">
             <td th:text="${statement.club.name}"></td>
             <td th:text="${statement.journalDescription}"></td>
@@ -30,8 +33,15 @@
                 <div th:text="${statement.user.lastname}"></div>
             </td>
     	</tr>
+            </tbody>
     </table>
     </div>
 </div>
+    <th:block th:include="fragments/headerinc :: scripts"></th:block>
+    <script type="text/javascript">
+        $(function () {
+            $("#statements").dataTable();
+        })
+        </script>
 </body>
 </html>
