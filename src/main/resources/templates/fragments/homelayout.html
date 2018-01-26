@@ -14,15 +14,21 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#" th:href="@{/app/secure/user-home}">Home</a>
                     <ul class="nav navbar-nav">
-                        <li><a href="#" th:href="@{/app/secure/events}">Events</a></li>
-                        <li><a href="#" th:href="@{/app/secure/blog}">Blog</a></li>
-                        <li><a href="#" th:href="@{/app/secure/clubs}">Clubs</a></li>
+                        <li><a th:href="@{/app/secure/events}">Events</a></li>
+                        <li><a th:href="@{/app/secure/blog}">Blog</a></li>
+                        <li><a th:href="@{/app/secure/clubs}">Clubs</a></li>
                         <!--div sec:authorize="hasRole('ROLE_ADMIN')"-->
-                        <li><a href="#" th:href="@{/app/secure/affiliations}">Affiliation</a></li>
-                        <li><a th:href="@{/app/logout}"><span style="color: royalblue">LOG-OUT</span></a></li>
+                        <li><a th:href="@{/app/secure/affiliations}">Affiliation</a></li>
                         <!--/div-->
                     </ul>
-
+                 
+                        <ul class="nav pull-right top-menu">
+                        <li>
+                            <form class="navbar-form navbar-right" th:action="@{/app-logout}" method="POST">
+                                 <button type="submit" class="btn bg-warning navbar-btn">LOG-OUT</button>
+                            </form>
+                        </li> 
+                    </ul>
                 </div>
             </div>
         </nav>

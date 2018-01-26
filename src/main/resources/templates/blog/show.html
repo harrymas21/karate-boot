@@ -28,7 +28,7 @@
         <h3>Comments:</h3>
         <div class="col-lg-6" th:if="${not #lists.isEmpty(comments)}">
         <div class="media" th:each="comment : ${comments}">
-           <p class="pull-right" >
+            <p style="color: #337ab7" class="pull-right" >
                <small th:text="*{comment.author.firstname}"></small> 
                <small th:text="*{#dates.format(comment.date, 'dd-MMM-yyyy HH:mm')}"></small>
            </p>
