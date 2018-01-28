@@ -14,6 +14,9 @@ public class UserInfo implements Serializable {
   @Column(name="id")
   private int id;
   
+  @Version
+    private Integer version;
+  
   @Column(name="username")
   @NotEmpty(message = "*Please provide your username")
   private String username;
@@ -73,6 +76,10 @@ public class UserInfo implements Serializable {
   public int getId() {return id;}
 
   public void setId(int id) {this.id = id;}
+  
+  public Integer getVersion() {return version;}
+
+  public void setVersion(Integer version) {this.version = version;}
   
   public String getUsername() {return username;}
 
