@@ -7,10 +7,8 @@ import com.carbonara.karateboot.models.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import com.carbonara.karateboot.services.EventService;
 import com.carbonara.karateboot.services.UserService;
-import java.io.IOException;
 import java.util.Date;
 import javax.validation.Valid;
 import org.springframework.security.core.Authentication;
@@ -54,16 +52,25 @@ public class EventController {
     
     //save to database and redirect to show
     @RequestMapping(value = "app/secure/event/", method = RequestMethod.POST)
-    public String saveProduct(@Valid @ModelAttribute("event")Event event,BindingResult bindingResult){
-        if (bindingResult.hasErrors()) {
-			return "event/form";
-		} else {
-			eventService.saveEvent(event);
-			return "redirect:/app/secure/events";	
+    public String saveProduct(@Valid @ModelAttribute("event")Event dto,BindingResult bindingResult){
+        Event eventnameExists = eventService.findEventByName(dto.getName());
+        if (eventnameExists != null) 
+                {
+			bindingResult.rejectValue("name", "error.event",
+                                "There is already an event registered with the name provided");
 		}
+        if (bindingResult.hasErrors()) 
+        {
+            return "event/form";
+	}
+        else 
+        {
+            eventService.saveEvent(dto);
+            return "redirect:/app/secure/events";
+        }
     }    
     
-    //confirm first
+    //confirm first before delete
     @RequestMapping("app/secure/event/confirmdelete/{id}")
     public String deleteEvent(@PathVariable Integer id, Model model) {
         model.addAttribute("event", eventService.getEventById(id));
@@ -88,9 +95,7 @@ public class EventController {
     @RequestMapping("app/secure/blog/event/register/")
     public String saveEventRegistration(@Valid @ModelAttribute("register")EventRegisterDTO dto,BindingResult bindingResult,Model model)
     { 
-       //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
        EventRegister e = new EventRegister();
-       //e.setUser(userService.findByUsername(auth.getName()));
        e.setUser(userService.getLoggedInUser());
        e.setEvent(eventService.getEventById(dto.getEventId()));
        e.setResult("PARTICIPATION");

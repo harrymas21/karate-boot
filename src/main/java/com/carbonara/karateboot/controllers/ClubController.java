@@ -57,17 +57,20 @@ public class ClubController {
     @RequestMapping(value = "app/secure/club/", method = RequestMethod.POST)
     public String saveProduct(@Valid @ModelAttribute("club")Club club,BindingResult bindingResult){
         Club clubExists = clubService.getClubByName(club.getName());
-        if (clubExists != null) {
-			bindingResult
-					.rejectValue("name", "error.club",
-							"There is already a club registered with the name provided");
-		}
-        if (bindingResult.hasErrors()) {
-			return "club/form";
-		} else {
-			clubService.saveClub(club);
-			return "redirect:/app/secure/clubs";
-		}
+        if (clubExists != null) 
+        {
+            bindingResult.rejectValue("name", "error.club",
+                    "There is already a club registered with the name provided");
+        }
+        if (bindingResult.hasErrors()) 
+        {
+            return "club/form";
+        } 
+        else 
+        {
+            clubService.saveClub(club);
+            return "redirect:/app/secure/clubs";
+        }
     }
     
     //delete event and go back to index
