@@ -13,7 +13,7 @@
     <div class="col-lg-8">
         <form class="form-horizontal" th:object="${affiliation}" th:action="@{/app/secure/affiliation/new/save}" method="post">
             <div class="form-group">
-                <label th:if="${#fields.hasErrors('clubName')}" th:errors="*{clubName}" style="color: red" class="validation-message"></label>
+                <label th:if="${#fields.hasErrors('clubName')}" th:errors="*{clubName}" class="validation-message error"></label>
                 <label class="col-sm-2 control-label">Club:</label>
                 <div class="col-sm-10">
                     <select class="form-control" th:field="*{clubName}">
@@ -22,21 +22,21 @@
                 </div>
             </div>
             <div class="form-group">
-                <label th:if="${#fields.hasErrors('journalDescription')}" th:errors="*{journalDescription}" style="color: red" class="validation-message"></label>
+                <label th:if="${#fields.hasErrors('journalDescription')}" th:errors="*{journalDescription}" class="validation-message error"></label>
                 <label class="col-sm-2 control-label">Journal Description:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{journalDescription}"/>
                 </div>
             </div>
             <div class="form-group">
-                <label th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" style="color: red" class="validation-message"></label>
+                <label th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" class="validation-message error"></label>
                 <label class="col-sm-2 control-label">Amount:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{amount}"/>
                 </div>
             </div>
             <div class="form-group">
-                <label th:if="${#fields.hasErrors('paid')}" th:errors="*{paid}" style="color: red" class="validation-message"></label>
+                <label th:if="${#fields.hasErrors('paid')}" th:errors="*{paid}" class="validation-message error"></label>
                 <label class="col-sm-2 control-label">Paid:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{paid}"/>

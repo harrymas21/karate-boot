@@ -13,13 +13,14 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#" th:href="@{/app/secure/user-home}">Home</a>
-                    <ul class="nav navbar-nav">
+                    <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <ul class="nav navbar-nav">
                         <li><a th:href="@{/app/secure/events}">Events</a></li>
                         <li><a th:href="@{/app/secure/blog}">Blog</a></li>
                         <li><a th:href="@{/app/secure/clubs}">Clubs</a></li>
-                        <!--div sec:authorize="hasRole('ROLE_ADMIN')"-->
                         <li><a th:href="@{/app/secure/affiliations}">Affiliation</a></li>
-                        <!--/div-->
+                        <li><a th:href="@{/app/secure/user/profile}">Profile</a></li>
+                        <li><a th:href="@{/app/secure/users}">Manage Users</a></li>
                     </ul>
                  
                         <ul class="nav pull-right top-menu">
@@ -29,6 +30,23 @@
                             </form>
                         </li> 
                     </ul>
+                    </div>
+                    <div sec:authorize="hasRole('ROLE_USER')">
+                    <ul class="nav navbar-nav">
+                        <li><a th:href="@{/app/secure/events}">Events</a></li>
+                        <li><a th:href="@{/app/secure/blog}">Blog</a></li>
+                        <li><a th:href="@{/app/secure/clubs}">Clubs</a></li>
+                        <li><a th:href="@{/app/secure/user/profile}">Profile</a></li>
+                    </ul>
+                 
+                        <ul class="nav pull-right top-menu">
+                        <li>
+                            <form class="navbar-form navbar-right" th:action="@{/app-logout}" method="POST">
+                                 <button type="submit" class="btn bg-warning navbar-btn">LOG-OUT</button>
+                            </form>
+                        </li> 
+                    </ul>
+                    </div>
                 </div>
             </div>
         </nav>

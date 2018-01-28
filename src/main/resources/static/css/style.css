@@ -23,3 +23,7 @@ fieldset {
     padding-right:5px;
     padding-bottom:5px;
 }
+
+.error{
+    color: red;
+}

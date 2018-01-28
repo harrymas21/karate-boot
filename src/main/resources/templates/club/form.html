@@ -14,35 +14,35 @@
             <input type="hidden" th:field="*{id}"/>
             <input type="hidden" th:field="*{version}"/>
             <div class="form-group">
-                <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red" class="validation-message"></label>
+                <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="validation-message error"></label>
                 <label class="col-sm-2 control-label">Name:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{name}" placeholder="e.g. Taikan"/>
                 </div>
             </div>
             <div class="form-group">
-                <label th:if="${#fields.hasErrors('location')}" th:errors="*{location}" style="color: red" class="validation-message"></label>
+                <label th:if="${#fields.hasErrors('location')}" th:errors="*{location}" class="validation-message error"></label>
                 <label class="col-sm-2 control-label">Location:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{location}" placeholder="e.g. Nairobi"/>
                 </div>
             </div>
             <div class="form-group">
-                <label th:if="${#fields.hasErrors('style')}" th:errors="*{style}" style="color: red" class="validation-message"></label>
+                <label th:if="${#fields.hasErrors('style')}" th:errors="*{style}" class="validation-message error"></label>
                 <label class="col-sm-2 control-label">Style:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{style}" placeholder="e.g Shotokan"/>
                 </div>
             </div>
             <div class="form-group">
-                <label th:if="${#fields.hasErrors('county')}" th:errors="*{county}" style="color: red" class="validation-message"></label>
+                <label th:if="${#fields.hasErrors('county')}" th:errors="*{county}" class="validation-message error"></label>
                 <label class="col-sm-2 control-label">County:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{county}" placeholder="e.g. Nairobi"/>
                 </div>
             </div>
             <div class="form-group">
-                <label th:if="${#fields.hasErrors('nearestTown')}" th:errors="*{nearestTown}" style="color: red" class="validation-message"></label>
+                <label th:if="${#fields.hasErrors('nearestTown')}" th:errors="*{nearestTown}" class="validation-message error"></label>
                 <label class="col-sm-2 control-label">Nearest Town:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{nearestTown}" placeholder="e.g. Juja"/>
