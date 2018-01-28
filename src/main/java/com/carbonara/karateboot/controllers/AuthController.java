@@ -57,12 +57,23 @@ public class AuthController {
         @PostMapping("register")
 	public ModelAndView createNewUser(@Valid @ModelAttribute("user")UserDTO dto, BindingResult bindingResult, ModelAndView modelAndView)
         throws IOException{
-		//ModelAndView modelAndView = new ModelAndView();
-		UserInfo userExists = userService.findUserByEmail(dto.getEmail());
-		if (userExists != null) {
-			bindingResult
-					.rejectValue("email", "error.user",
-							"There is already a user registered with the email provided");
+		UserInfo emailExists = userService.findUserByEmail(dto.getEmail());
+                UserInfo usernameExists = userService.findByUsername(dto.getUsername());
+                UserInfo phonenumberExists = userService.findUserByPhone(dto.getPhone());
+		if (emailExists != null) 
+                {
+			bindingResult.rejectValue("email", "error.user",
+                                "There is already a user registered with the email provided");
+		}
+                if (usernameExists != null) 
+                {
+			bindingResult.rejectValue("username", "error.user",
+                                "There is already a user registered with the username provided");
+		}
+                if (phonenumberExists != null) 
+                {
+			bindingResult.rejectValue("phone", "error.user",
+                                "There is already a user registered with the phonenumber provided");
 		}
 		if (bindingResult.hasErrors()) {
                         modelAndView.addObject("clubs", clubService.listAllClubs());
