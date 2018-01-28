@@ -49,4 +49,9 @@ private EventRegisterRepository eventRegisterRepository;
     public EventRegister findByEventAndUser(Event event, UserInfo user) {
         return eventRegisterRepository.findByEventAndUser(event, user);
     }
+
+    @Override
+    public Event findEventByName(String name) {
+        return eventRepository.findByName(name);
+    }
 }

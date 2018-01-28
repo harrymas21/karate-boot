@@ -11,4 +11,5 @@ public interface EventService {
     EventRegister saveRegistration(EventRegister eventRegister);
     EventRegister findByEventAndUser(Event event, UserInfo user);
     void deleteEvent(Integer id);
+    Event findEventByName(String name);
 }
