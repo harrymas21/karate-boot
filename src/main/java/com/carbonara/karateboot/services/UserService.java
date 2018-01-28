@@ -6,11 +6,14 @@ import java.util.List;
 
 public interface UserService {
      public UserInfo findUserByEmail(String email);
+     public UserInfo findUserByPhone(String phone);
      public UserInfo findByUsername(String username);
+     public UserInfo findById(Integer id);
      public UserInfo getLoggedInUser();
-      void saveUser(UserInfo user);
-      void deleteUser(String username);
-      UserInfo getActiveUser(String userName);
-      public List<UserInfo> getAllUsers();
-      Iterable<UserInfo> getUsersByClub(Integer id);
+     void saveUser(UserInfo user);
+     UserInfo getActiveUser(String userName);
+     public Iterable<UserInfo> listUsers();
+     Iterable<UserInfo> getUsersByClub(Integer id);
+     void resetPassword(Integer id);
+     void disableUser(Integer id);
     }

@@ -35,11 +35,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public UserInfo getActiveUser(String userName) {
         UserInfo activeUserInfo = new UserInfo();
 		short enabled = 1;
@@ -53,7 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserInfo> getAllUsers() {
+    public Iterable<UserInfo> listUsers() {
         return userRepository.findAll();
     }
 
@@ -74,6 +69,31 @@ public class UserServiceImpl implements UserService {
         List<UserInfo> usersByClub = entityManager.createQuery("SELECT u FROM UserInfo u WHERE clubid=?")
 				.setParameter(1, id).getResultList();
         return usersByClub;
+    }
+
+    @Override
+    public void resetPassword(Integer id) {
+        UserInfo user = findById(id);
+        user.setPassword(bCryptPasswordEncoder.encode("123456"));
+        userRepository.save(user);
+    }
+
+    @Override
+    public void disableUser(Integer id) {
+        UserInfo user = findById(id);
+        short disabled = 0;
+        user.setEnabled(disabled);
+        userRepository.save(user);
+    }
+
+    @Override
+    public UserInfo findById(Integer id) {
+        return userRepository.findOne(id);
+    }
+
+    @Override
+    public UserInfo findUserByPhone(String phone) {
+        return userRepository.findByPhone(phone);
     }
     
 }
