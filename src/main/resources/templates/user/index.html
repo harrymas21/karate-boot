@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Karate Boot</title>
+   <th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+<div class="container">
+    <th:block th:include="fragments/homelayout :: header"></th:block>
+    <div class="col-lg-10" th:if="${not #lists.isEmpty(users)}">
+        <table class="table table-striped" id="users">
+            <thead>
+		<tr>
+		    <th>Username</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>E-mail</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Club</th>
+                    <th>Belt Rank</th>
+                    <th>Enabled</th>
+                    <th></th>
+                    <th></th>
+		</tr>
+            </thead>
+            <tbody>
+    	<tr th:each = "user : ${users}">
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.firstname}"></td>
+            <td th:text="${user.lastname}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.address}"></td>
+            <td th:text="${user.phone}"></td>
+            <td th:text="${user.club.name}"></td>
+            <td th:text="${user.rank}"></td>
+            <td th:text="${user.enabled}"></td>
+            <td><a th:href="${'/app/secure/user/reset/' + user.id}">Reset Password</a></td>
+            <td><a th:href="${'/app/secure/user/disable/' + user.id}">Disable User</a></td>
+    	</tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+    <th:block th:include="fragments/headerinc :: scripts"></th:block>
+    <script type="text/javascript">
+        $(function () {
+            $("#users").dataTable();
+        })
+        </script>
+</body>
+</html>
