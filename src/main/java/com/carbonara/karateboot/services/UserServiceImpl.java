@@ -95,5 +95,10 @@ public class UserServiceImpl implements UserService {
     public UserInfo findUserByPhone(String phone) {
         return userRepository.findByPhone(phone);
     }
+
+    @Override
+    public Iterable<UserInfo> getUsersByRank(String rank) {
+        return userRepository.findByRank(rank);
+    }
     
 }

@@ -16,4 +16,5 @@ public interface UserService {
      Iterable<UserInfo> getUsersByClub(Integer id);
      void resetPassword(Integer id);
      void disableUser(Integer id);
+     Iterable<UserInfo> getUsersByRank(String rank);
     }

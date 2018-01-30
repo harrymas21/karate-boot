@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50524
 File Encoding         : 65001
 
-Date: 2018-01-26 21:40:25
+Date: 2018-01-30 09:49:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,7 +37,7 @@ CREATE TABLE `affiliations` (
   CONSTRAINT `FKhao5t4ehrllmpfv0xe9p0sl3e` FOREIGN KEY (`club_id`) REFERENCES `clubs` (`id`),
   CONSTRAINT `FKiwo6a6ykunlg7p1ey6t1no8mx` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`),
   CONSTRAINT `FKsya9810edyxbds5kujql7j3x4` FOREIGN KEY (`club_id`) REFERENCES `clubs` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of affiliations
@@ -56,6 +56,7 @@ INSERT INTO `affiliations` VALUES ('11', '0', '2013/2015 affiliation fee', 'HDK2
 INSERT INTO `affiliations` VALUES ('12', '0', '2017', 'GHY222222222222', '8000', '0', '2018-01-24 20:12:50', '8000', '3', '2');
 INSERT INTO `affiliations` VALUES ('13', '0', '2018', 'BAR20180124201612', '2000', '200', '2018-01-24 20:18:23', '1800', '3', '3');
 INSERT INTO `affiliations` VALUES ('14', '0', 'clear outstanding debt', 'UQV20180125130516', '0', '2000', '2018-01-25 13:07:09', '8000', '2', '3');
+INSERT INTO `affiliations` VALUES ('15', '0', '2016 affiliation fee', 'GEI20180130045353', '0', '4400', '2018-01-30 04:56:57', '100', '1', '3');
 
 -- ----------------------------
 -- Table structure for `blog`
@@ -212,7 +213,8 @@ CREATE TABLE `users` (
   `enabled` smallint(6) DEFAULT NULL,
   `clubid` int(11) DEFAULT '2',
   `rank` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`,`username`),
   KEY `FKhe3mwp13wbxa0khempwhn7i3t` (`clubid`),
   CONSTRAINT `FKhe3mwp13wbxa0khempwhn7i3t` FOREIGN KEY (`clubid`) REFERENCES `clubs` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
@@ -220,9 +222,9 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('2', 'johndoe', 'ROLE_USER', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'John', 'Doe', 'jdoe@jdoe.com', 'LAVINGTON', '254700000000', '1', '2', '2nd KYU');
-INSERT INTO `users` VALUES ('3', 'harry', 'ROLE_ADMIN', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'harry', 'Support', 'support@kboot.com', 'SOUTH B', '254700000000', '1', '2', '2nd KYU');
-INSERT INTO `users` VALUES ('5', 'test', 'ROLE_USER', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'user', 'test', 'admin@admin.com', 'EASTLEIGH', '254700000000', '1', '2', '2nd KYU');
-INSERT INTO `users` VALUES ('7', 'user', 'ROLE_USER', '$2a$10$/0GrhURSoL/qwgiYmqAiyO2TTighRiaxkSDENkQvnfWyIu5h19ZNy', 'gabby', 'gabby', 'gabby@gabby.com', 'sabatia', '254700000000', '1', '2', '2nd KYU');
-INSERT INTO `users` VALUES ('8', 'dao', 'ROLE_USER', '$2a$10$4oUTSV.KkE8Dsy6RUsknZes3sU7AJzAXM4REhBq7gUpaNGRWorfNi', 'dao', 'dao', 'dao@dao.com', 'dao', '254700000000', '1', '5', '2nd KYU');
-INSERT INTO `users` VALUES ('9', 'janedoe', 'ROLE_USER', '$2a$10$W1NCISINTKAIhD91Q824cuPZBNohW35ur47LIDOZriYueLXzFC07G', 'jane', 'doe', 'jane@jane.com', 'KAKAMEGA', '254700000000', '1', '4', '3rd KYU');
+INSERT INTO `users` VALUES ('2', 'johndoe', 'ROLE_USER', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'John', 'Doe', 'jdoe@jdoe.com', 'LAVINGTON', '254700000000', '1', '2', '2nd KYU', '0');
+INSERT INTO `users` VALUES ('3', 'harry', 'ROLE_ADMIN', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'harry', 'Support', 'support@kboot.com', 'SOUTH B', '254700000000', '1', '2', '2nd KYU', '0');
+INSERT INTO `users` VALUES ('5', 'test', 'ROLE_USER', '$2a$10$N0eqNiuikWCy9ETQ1rdau.XEELcyEO7kukkfoiNISk/9F7gw6eB0W', 'user', 'test', 'admin@admin.com', 'EASTLEIGH', '254700000000', '1', '2', '2nd KYU', '0');
+INSERT INTO `users` VALUES ('7', 'user', 'ROLE_USER', '$2a$10$08t6dIJ/F6BgzTMGiIqwLe6EmAucj92tjm2TbZX3ep9mguBvgQhvi', 'gabby', 'gabby', 'gabby@gabby.com', 'sabatia', '254700000000', '0', '2', '2nd KYU', '3');
+INSERT INTO `users` VALUES ('8', 'dao', 'ROLE_USER', '$2a$10$muQGNdhgWCFuCvRGoUbG9ONUP7opBSbl0aRQdlN/eO4Tgr.zukcWK', 'dao', 'dao', 'dao@dao.com', 'dao', '254700000000', '0', '5', '2nd KYU', '2');
+INSERT INTO `users` VALUES ('9', 'janedoe', 'ROLE_USER', '$2a$10$fEPtC5zZFtHRF5BlAH3eHut1YGM4MXlAQjmaZ5nfQiGylMzShXvzS', 'jane', 'doe', 'jane@jane.com', 'KAKAMEGA', '254700000000', '0', '4', '3rd KYU', '2');

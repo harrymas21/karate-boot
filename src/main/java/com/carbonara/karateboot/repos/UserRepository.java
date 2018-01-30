@@ -9,4 +9,5 @@ public interface UserRepository extends JpaRepository<UserInfo, Integer> {
 	 UserInfo findByEmail(String email);
          UserInfo findByUsername(String username);
          UserInfo findByPhone(String phonenumber);
+         Iterable<UserInfo> findByRank(String rank);
 }

@@ -1,39 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <title>Karate Boot</title>
    <th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
 <body>
-
-<div class="container">
-    <th:block th:include="fragments/homelayout :: header"></th:block>
-    <h3>Display statements by date:</h3>
-    <div class="row">
-    <div class="col-lg-8">
+    <div id="wrapper">
+    <th:block th:include="fragments/headerinc :: sidebar"></th:block>
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <th:block th:include="fragments/headerinc :: header"></th:block>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-8">
+                    <h3>Display statements by date:</h3>
         <form class="form-horizontal" th:object="${date}" th:action="@{/app/secure/affiliation/statement}" method="post">
             <div class="form-group">
                 <label th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" style="color: red" class="validation-message"></label>
                 <label class="col-sm-2 control-label">Start Date:</label>
                 <div class="col-sm-10">
-                    <input type="date" class="jqueryui-marker-datepicker form-control" th:field="*{startDate}"/>
+                    <input type="text" class="jqueryui-marker-datepicker form-control" th:field="*{startDate}"/>
                 </div>
             </div>
             <div class="form-group">
                 <label th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" style="color: red" class="validation-message"></label>
                 <label class="col-sm-2 control-label">End Date:</label>
                 <div class="col-sm-10">
-                    <input type="date" class="jqueryui-marker-datepicker form-control" th:field="*{endDate}"/>
+                    <input type="text" class="jqueryui-marker-datepicker form-control" th:field="*{endDate}"/>
                 </div>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-info">Display</button>
             </div>
         </form>
-    </div>
-    </div>
-    <hr/>
-    <div class="row">
+    </div>    
+            </div>
+        </div>
+        <div class="row">
         <div class="col-lg-4">
         <div sec:authorize="hasRole('ROLE_ADMIN')">
             <a th:href="${'/app/secure/affiliation/new'}" class="btn btn-info">Receive Payment</a>
@@ -52,7 +54,9 @@
         </div>
         </div>
     </div>
-</div>
+        <th:block th:include="fragments/headerinc :: footer"></th:block>
+    </div>
+    </div>
     <th:block th:include="fragments/headerinc :: scripts"></th:block>
 </body>
 </html>

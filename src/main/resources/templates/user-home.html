@@ -1,33 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <title>Karate Boot</title>
    <th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
 <body>
-
-<div class="container">
-    <th:block th:include="fragments/homelayout :: header"></th:block>
-    <fieldset>
-            <div class="row text-center">
-                <div class="">
-                    <h2>Karate Boot Application</h2>
-                    <h3>Welcome</h3>
+    <div id="wrapper">
+    <th:block th:include="fragments/headerinc :: sidebar"></th:block>
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <th:block th:include="fragments/headerinc :: header"></th:block>
+        <div class="row">
+            <div class="col-lg-12">
+                    <h2>
+                    Welcome
+                    <span th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]]
+                    </span>
+                    </h2>
                 </div>
+             <div class='row'>
+                 <div class="col-lg-12">
+                <div class='col-lg-4'><h3 class='gray'>Pictures</h3></div>
+                <div class='col-lg-4'><h3 class='gray'>Videos</h3></div>
+                <div class='col-lg-4'><h3 class='gray'>Miscellaneous</h3></div>
+                 </div>
             </div>
-            <div class="row text-center">
-                <img src="../../static/images/boot.png" width="200" th:src="@{/images/boot.png}"/>
-            </div>
-        </fieldset>
-    <h4>
-        Welcome:
-        <span style="color: gray;font-style: italic" th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]]
-        </span></h4>
-     <div class='row'>
-        <div class='col-lg-4'><h3 class='gray'>Pictures</h3></div>
-        <div class='col-lg-4'><h3 class='gray'>Videos</h3></div>
-        <div class='col-lg-4'><h3 class='gray'>Miscellaneous</h3></div>
-        </div>
-</div>
+        </div>   
+        <th:block th:include="fragments/headerinc :: footer"></th:block>
+    </div>
+    </div>
+    <th:block th:include="fragments/headerinc :: scripts"></th:block>
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 4000
+                };
+                toastr.success('Welcome to Karate Boot 2.0.0');
+
+            }, 1300);
+        });
+    </script>
 </body>
 </html>

@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <title>Karate Boot</title>
    <th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
 <body>
-
-<div class="container">
-    <div class='row'>
-    <th:block th:include="fragments/homelayout :: header"></th:block>
-    <div class="col-lg-3"></div>
-        <div class="col-lg-6">
-    <fieldset class="receipt">
+    <div id="wrapper">
+    <th:block th:include="fragments/headerinc :: sidebar"></th:block>
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <th:block th:include="fragments/headerinc :: header"></th:block>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-6">
+                    <fieldset class="receipt">
     <h3>Receipt</h3>
     <br/>
     <h4 class='text-uppercase'>
@@ -61,9 +62,12 @@
             </form>
     </div>
     </fieldset>
+                </div>
+                </div>
+        </div>   
+        <th:block th:include="fragments/headerinc :: footer"></th:block>
     </div>
-    <div class="col-lg-3"></div>
     </div>
-</div>
+    <th:block th:include="fragments/headerinc :: scripts"></th:block>
 </body>
 </html>

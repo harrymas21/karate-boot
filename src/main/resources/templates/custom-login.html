@@ -1,41 +1,38 @@
-<html>
-<head lang="en">
-    <title>Karate Boot</title>
-<th:block th:include="fragments/headerinc :: head"></th:block>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Karate Boot</title>
+	<th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
-<body>
 
-<div class="container">
-    <th:block th:include="fragments/header :: header"></th:block>
-    <p th:if="${param.error}" class="error">
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">K.Boot</h1>
+
+            </div>
+            <h3>Log-In to K.Boot</h3>
+			<p th:if="${param.error}" class="error">
             Bad Credentials !!!
-        </p>
-        <div class="col-lg-6">
-        <form th:action="@{/app-login}" method="POST">
-            <div class="form-group">
-                <div class="col-sm-9">
-                    <label>
-                        User Name:
-                    </label>
-                    <input type="text" name="app_username" class="form-control"/>
+			</p>
+                        <form class="m-t" role="form" th:action="@{/app-login}" method="POST" autocomplete="off">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="app_username" placeholder="Username" required=""/>
                 </div>
-            </div>
-            
-            <div class="form-group">
-               <div class="col-sm-9">
-                 <label>
-                        Password:
-                    </label>
-                   <input type="password" name="app_password" class="form-control"/>
-               </div>
-            </div>
-            <div class="form-group">
-               <div class="col-sm-9">
-                   <input type="submit" class="btn btn-primary btn-block" value="Login"/>
-               </div>
-            </div>
-        </form>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="app_password" placeholder="Password" required=""/>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+				
+                <p class="text-muted text-center"><small>Do not have an account?</small></p>
+                <a href="#" th:href="@{/app/register}">Create an account</a>
+            </form>
+            <p class="m-t"> <small>Version 2.0.0 &copy; 2018</small> </p>
         </div>
-</div>
+    </div>
+	<th:block th:include="fragments/headerinc :: scripts"></th:block>
 </body>
 </html>

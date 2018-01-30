@@ -1,21 +1,29 @@
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
 <head lang="en">
     <title>Karate Boot</title>
-<th:block th:include="fragments/headerinc :: head"></th:block>
+	<th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
-<body>
+</head>
 
-<div class="container">
-    <th:block th:include="fragments/header :: header"></th:block>
-    <div class="col-lg-6">
-    <form autocomplete="off" action="#" th:action="@{/app/register}"
-					th:object="${user}" method="post" class="form-horizontal"
-					role="form">
-        <h2>User Registration Form</h2>
-            <div class="form-group">
-                    <div class="col-sm-9">
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+            <div>
+                <h1 class="logo-name">K.Boot</h1>
+            </div>
+            <h3>Register to K.Boot</h3>
+            <p>Create account below.</p>
+			<span th:utext="${successMessage}" style="color: green;font-style: italic"></span>
+            <form class="m-t" role="form" th:action="@{/app/register}" th:object="${user}" method="post">
+			
+                <div class="form-group">
+                    
                     <label th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"
                                     class="validation-message error"></label>
+                    <div class="col-sm-9">
                                     <label class="control-label">First name:</label>
                     <input type="text" th:field="*{firstname}" placeholder="First Name"
                                     class="form-control" /> 
@@ -23,35 +31,38 @@
             </div>
 
             <div class="form-group">
-                    <div class="col-sm-9">
                     <label	th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"
                                     class="validation-message error"></label>
+									<div class="col-sm-9">
                                     <label class="control-label">Last name:</label>
                             <input type="text" th:field="*{lastname}"
                                     placeholder="Last Name" class="form-control" /> 
                     </div>
             </div>
+			
             <div class="form-group">
-                    <div class="col-sm-9">
                     <label	th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
                                     class="validation-message error"></label>
+									<div class="col-sm-9">
                                     <label class="control-label">Username:</label>
                             <input type="text" th:field="*{username}"
                                     placeholder="User Name" class="form-control" /> 
                     </div>
             </div>
+			
             <div class="form-group">
-            <div class="col-sm-9">
                 <label th:if="${#fields.hasErrors('club')}" th:errors="*{club}" class="validation-message error"></label>
+				<div class="col-sm-9">
                 <label class="control-label">Club:</label>
                 <select class="form-control" th:field="*{club}">
                 <option th:each = "club : ${clubs}" th:value="${club.name}" th:text="${club.name}"></option>
             </select>
             </div>
             </div>
+			
         <div class="form-group">
-            <div class="col-sm-9">
-                <label th:if="${#fields.hasErrors('rank')}" th:errors="*{rank}" class="validation-message error"></label>
+		<label th:if="${#fields.hasErrors('rank')}" th:errors="*{rank}" class="validation-message error"></label>
+				<div class="col-sm-9">
                 <label class="control-label">Belt Rank:</label>
                 <select class="form-control" th:field="*{rank}">
                     <option value="Above 5th DAN">Above 5th DAN</option>
@@ -72,47 +83,51 @@
             </select>
             </div>
             </div>
+			
             <div class="form-group">
-                <div class="col-sm-9"> 
                     <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
                                 class="validation-message error"></label>
+								<div class="col-sm-9">
                     <label class="control-label">Email:</label>
                     <input type="text" th:field="*{email}" placeholder="Email" class="form-control" />
                 </div>
             </div>
+			
             <div class="form-group">
-                <div class="col-sm-9">
                     <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                                 class="validation-message error"></label>
+								<div class="col-sm-9">
                     <label class="control-label">Password:</label>
                     <input type="password" th:field="*{password}" placeholder="Password" class="form-control" /> 
                 </div>
             </div>
+			
             <div class="form-group">
-                    <div class="col-sm-9">
                     <label th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
                                     class="validation-message error"></label>
+									<div class="col-sm-9">
                     <label class="control-label">Address:</label>
                     <input type="text" th:field="*{address}" placeholder="Address - town" class="form-control" /> 
                     </div>
             </div>
+			
             <div class="form-group">
-                <div class="col-sm-9">
                 <label th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"
                                 class="validation-message error"></label>
+								<div class="col-sm-9">
                 <label class="control-label">Phonenumber:</label>
                 <input type="text" th:field="*{phone}" placeholder="254700000000" class="form-control" /> 
                 </div>
             </div>
+			
+                <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
 
-            <div class="form-group">
-                <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Register</button>
-                </div>
-            </div>
-        <span th:utext="${successMessage}" style="color: green;font-style: italic"></span>					
-</form>
+                <p class="text-muted text-center"><small>Already have an account?</small></p>
+                <a class="btn btn-sm btn-white btn-block" th:href="@{/app/login}">Login</a>
+            </form>
+            <p class="m-t"> <small>Version 2.0.0 &copy; 2018</small> </p>
+        </div>
     </div>
-</div>
+    <th:block th:include="fragments/headerinc :: scripts"></th:block>
 </body>
 </html>
